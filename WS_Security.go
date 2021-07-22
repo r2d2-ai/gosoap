@@ -5,8 +5,9 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/xml"
-	"github.com/satori/go.uuid"
 	"time"
+
+	uuid "github.com/satori/go.uuid"
 )
 
 /*************************
@@ -84,7 +85,7 @@ func NewSecurity(username, passwd string) security {
 }
 
 func genNonce() (string, string) {
-	nonceObj, _ := uuid.NewV4()
+	nonceObj := uuid.NewV4()
 	nonce := hex.EncodeToString(nonceObj.Bytes())
 	nonceBase64 := base64.StdEncoding.EncodeToString([]byte(nonce))
 	return nonce, nonceBase64
